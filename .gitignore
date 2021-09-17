@@ -3,7 +3,6 @@ share/
 bin/
 lib/
 pyvenv.cfg
-
 config.py
 pricescraper.db
 
