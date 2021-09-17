@@ -1,7 +1,7 @@
 # Operational config
-notifyWhenPriceLower = True
-notifyWhenPriceHigher = True
-notifyWhenPriceEqual = False
+notify_price_islower = True
+notify_price_ishigher = True
+notify_price_isequal = True
 
 # Secrets
 telegram_bot_enabled = False
