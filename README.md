@@ -10,6 +10,7 @@ From your terminal, `cd` to the folder the `pricescraper` folder
 is in (so, not the folder itself). Then:
 
 ```
+git clone git@github.com:vd-berg/pricescraper.git
 python3 -m venv pricescraper/
 source pricescraper/bin/activate
 cd pricescraper
@@ -20,24 +21,18 @@ pip install -r requirements.txt
 You can skip this step for first time use or testing purposes.
 
 To add your Telegram bot: 
-1. In `go.py` add [your Telegram bot](https://core.telegram.org/bots) 
-token and chat id to `pushToTelegram()` method.
-2. Uncomment the `self.pushToTelegram(result)` method in `__init__()`
+1. In `config.py` add [your Telegram bot](https://core.telegram.org/bots) 
+token and chat id.
+2. Change `telegram_bot_enabled` to `True`
 
-## Step 3: Adjust notification settings
-For first time users, notifications are always sent. Even if the price is
-the same or higher than last time. This is not very useful once you got
-the script going, so you can adjust this in `comparePriceToLog()` by setting
-`notifyHigher` and `notifySame` to `False`. 
-
-## Step 4: Running the script
+## Step 3: Running the script
 You can run the script by providing it with a CSS selector and URL like so:
 
 ```python
 go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/"
 ```
 
-### 4.1: Adding it to crontab
+### 3.1: Adding it to crontab
 This syntax is most useful in a cron job. This way you can set check intervals 
 as you like and make sure that if one job fails it doesn't fail others as well.
 
