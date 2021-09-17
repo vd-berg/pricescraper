@@ -25,7 +25,7 @@ token and chat id.
 You can run the script by providing it with a CSS selector and URL like so:
 
 ```python
-go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/"
+python go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/"
 ```
 
 ### 3.1: Adding it to crontab

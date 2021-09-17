@@ -34,7 +34,10 @@ class PriceScraper:
                 """
 
                 import sqlite3
-                return sqlite3.connect('/home/martijn/apps/pricescraper/pricescraper.db')
+                import os
+
+                db_path = os.path.abspath('pricescraper.db')
+                return sqlite3.connect(db_path)
 
         def getSoupFromURL(self, url):
                 """
