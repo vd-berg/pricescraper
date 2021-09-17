@@ -30,17 +30,25 @@ the same or higher than last time. This is not very useful once you got
 the script going, so you can adjust this in `comparePriceToLog()` by setting
 `notifyHigher` and `notifySame` to `False`. 
 
-## Step 4: Add your URL's and CSS Selectors
-At the bottom of the script, you can add trackers. Just add the URL and the
-CSS Selector where the script can find the price on the page.
+## Step 4: Running the script
+You can run the script by providing it with a CSS selector and URL like so:
 
-Example:
 ```python
-PriceScraper(
-	"span[data-qa='sell_price'] strong", 
-	"https://www.bever.nl/p/fjaellraeven-abisko-wool-t-shirt-short-sleeve-AIBEE00046.html?colour=2530"
-)
+go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/"
 ```
 
-## Step 5: Run the script as often as you like
-You can now run `python3 go.py` by hand, or call it using a cronjob to do it on set intervals.
+### 4.1: Adding it to crontab
+This syntax is most useful in a cron job. This way you can set check intervals 
+as you like and make sure that if one job fails it doesn't fail others as well.
+
+To open your crontab, use `crontab -e` and add to the bottom. You can add as 
+many lines as you like.
+
+To make sure it runs in the python venv created in step 1, use this syntax to 
+run a check every hour between 9AM and 9PM and log errors to a log file. 
+Adjust for your personal home directory.
+
+```bash
+0 9-21 * * * /home/martijn/apps/pricescraper/bin/python /home/martijn/apps/pricescraper/go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/" > /tmp/pricescraperlog.txt 2>$1
+```
+
