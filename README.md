@@ -4,11 +4,7 @@ compare it to previous prices and notify you on changes.
 
 # Installation
 
-## Step 1: install requirements
-Create a Python3 virtual environment and install requirements. 
-From your terminal, `cd` to the folder the `pricescraper` folder
-is in (so, not the folder itself). Then:
-
+## Step 1: Clone, create a venv and install requirements
 ```
 git clone git@github.com:vd-berg/pricescraper.git
 python3 -m venv pricescraper/
