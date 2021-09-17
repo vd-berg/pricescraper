@@ -10,6 +10,8 @@ git clone git@github.com:vd-berg/pricescraper.git
 python3 -m venv pricescraper/
 source pricescraper/bin/activate
 cd pricescraper
+cp pricescraper.db.template pricescraper.db
+cp config.py.template config.py
 pip install -r requirements.txt
 ```
 
