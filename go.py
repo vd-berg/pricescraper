@@ -95,8 +95,9 @@ class PriceScraper:
 
                 else:
                         raise Exception(
-                                "Expected to find exactly one result " \
+                                "{}: Expected to find exactly one result " \
                                 "for CSS selector {} but found {}.".format(
+                                        self.soup.title.getText(),
                                         self.cssSelector,
                                         str(len(result))
                                 )
