@@ -1,5 +1,5 @@
 # Your private price tracker
-Will get the price of a product on a certain URL and 
+Will get the price of a product on a certain URL and
 compare it to previous prices and notify you on changes.
 
 # Installation
@@ -18,8 +18,8 @@ pip install -r requirements.txt
 ## Step 2: Add your Telegram bot
 You can skip this step for first time use or testing purposes.
 
-To add your Telegram bot: 
-1. In `config.py` add [your Telegram bot](https://core.telegram.org/bots) 
+To add your Telegram bot:
+1. In `config.py` add [your Telegram bot](https://core.telegram.org/bots)
 token and chat id.
 2. Change `telegram_bot_enabled` to `True`
 
@@ -27,21 +27,27 @@ token and chat id.
 You can run the script by providing it with a CSS selector and URL like so:
 
 ```python
-python go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/"
+python go.py
 ```
 
-### 3.1: Adding it to crontab
-This syntax is most useful in a cron job. This way you can set check intervals 
-as you like and make sure that if one job fails it doesn't fail others as well.
+This should output something like:
+```
+Ja moi! Pries van "Patagonia Cap Air Hoody" is €105.95 (was €149.95 veurege keer). Most moar eem kiekn op: https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/
+```
 
-To open your crontab, use `crontab -e` and add to the bottom. You can add as 
-many lines as you like.
+### 3.1: Adding your own checks
+Open the `config.py` file and add your own checks to the `monitor_sites` list.
 
-To make sure it runs in the python venv created in step 1, use this syntax to 
-run a check every hour between 9AM and 9PM and log errors to a log file. 
+### 3.2: Adding it to crontab
+This script is most useful in a cron job. This way you can set check intervals
+as you like.
+
+To open your crontab, use `crontab -e` and add to the bottom.
+
+To make sure it runs in the python venv created in step 1, use this syntax to
+run a check every hour between 9AM and 9PM and log errors to a log file.
 Adjust for your personal home directory.
 
 ```bash
-0 9-21 * * * /home/martijn/apps/pricescraper/bin/python /home/martijn/apps/pricescraper/go.py "div.product-price span.price span.js-fprice" "https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/" > /tmp/pricescraperlog.txt 2>$1
+0 9-21 * * * /home/martijn/apps/pricescraper/bin/python /home/martijn/apps/pricescraper/go.py > /tmp/pricescraperlog.txt 2>$1
 ```
-

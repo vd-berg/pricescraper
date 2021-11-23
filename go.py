@@ -2,23 +2,20 @@ from config import *
 
 class PriceScraper:
 
-        def __init__(self):
-                import sys
+        def __init__(self, cssSelector, uri):
 
                 # Preload class variables to use in class
-                self.cssSelector = sys.argv[1]
-                self.url = sys.argv[2]
+                self.cssSelector = cssSelector
+                self.url = uri
                 self.soup = self.getSoupFromURL(self.url)
                 self.db = self.getDB()
 
                 # Get result for given URL and css selector
                 result = self.comparePriceToLog()
                 if result:
-
-                        print(result)
-                        
-                        if telegram_bot_enabled:
-                            self.pushToTelegram(result)
+                    print(result)
+                    if telegram_bot_enabled:
+                        self.pushToTelegram(result)
 
         def getDB(self):
                 """
@@ -187,4 +184,16 @@ class PriceScraper:
 
                 return response.json()
 
-PriceScraper()
+# Loop through sites listed in config.py
+for site in monitor_sites:
+    for site_url in site['urls']:
+
+        # Sites change, we don't want to stop all checks if one fails
+        try:
+            PriceScraper(site['css_selector'], site_url)
+        except:
+            print('Check failed for selector "?" on "?"'.format(
+                site['css_selector'],
+                site_url
+            ))
+            continue

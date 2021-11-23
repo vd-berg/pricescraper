@@ -8,4 +8,13 @@ telegram_bot_enabled = False
 telegram_bot_token = ''
 telegram_bot_chat_id = ''
 
-
+# Monitor URLs
+monitor_sites = [
+    {
+        'css_selector': 'div.product-price span.price span.js-fprice',
+        'urls': [
+            'https://www.bergfreunde.nl/patagonia-cap-air-hoody-merino-ondergoed/',
+            'https://www.bergfreunde.nl/patagonia-cap-air-crew-merino-ondergoed/'
+        ]
+    }
+]
