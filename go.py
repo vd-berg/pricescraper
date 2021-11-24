@@ -191,9 +191,14 @@ for site in monitor_sites:
         # Sites change, we don't want to stop all checks if one fails
         try:
             PriceScraper(site['css_selector'], site_url)
-        except:
-            print('Check failed for selector "{css}" on "{url}"'.format(
+        except Exception as ex:
+
+            msg = 'Check failed for selector "{css}" ' \
+            'on "{url}" with Exception {exception}'
+            
+            print(msg.format(
                 css = site['css_selector'],
-                url = site_url
+                url = site_url,
+                exception = ex
             ))
             continue
