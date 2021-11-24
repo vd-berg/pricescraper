@@ -46,6 +46,9 @@ class PriceScraper:
                 import urllib.request
 
                 # Get source code for given URL
+                opener = urllib.request.build_opener()
+                opener.addheaders = [('User-Agent', 'PriceScraperApp/1.0')]
+                urllib.request.install_opener(opener)
                 fp = urllib.request.urlopen(url)
                 mybytes = fp.read()
                 htmlsource = mybytes.decode("utf8")
@@ -195,7 +198,7 @@ for site in monitor_sites:
 
             msg = 'Check failed for selector "{css}" ' \
             'on "{url}" with Exception {exception}'
-            
+
             print(msg.format(
                 css = site['css_selector'],
                 url = site_url,
