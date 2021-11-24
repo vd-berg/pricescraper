@@ -192,8 +192,8 @@ for site in monitor_sites:
         try:
             PriceScraper(site['css_selector'], site_url)
         except:
-            print('Check failed for selector "?" on "?"'.format(
-                site['css_selector'],
-                site_url
+            print('Check failed for selector "{css}" on "{url}"'.format(
+                css = site['css_selector'],
+                url = site_url
             ))
             continue
